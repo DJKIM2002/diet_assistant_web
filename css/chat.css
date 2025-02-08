@@ -1,0 +1,99 @@
+/* 채팅 컨테이너 */
+#chatContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    max-width: 500px;
+    height: 80vh;
+    max-height: 600px;
+    margin: 100px auto; /* 페이지 중앙 배치 */
+    padding: 15px;
+    background-color: #e8f5e9; /* 연한 초록색 배경 */
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* 채팅 메시지 영역 */
+#chatMessages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #c8e6c9; /* 옅은 초록색 테두리 */
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* 메시지 스타일 */
+.message {
+    margin: 6px 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 75%;
+    line-height: 1.4;
+}
+
+.message.user {
+    background-color: #a5d6a7; /* 연한 초록색 */
+    color: #2e7d32;
+    align-self: flex-end;
+}
+
+.message.bot {
+    background-color: #c8e6c9; /* 매우 옅은 초록색 */
+    color: #1b5e20;
+    align-self: flex-start;
+}
+
+/* 사용자 입력 영역 */
+#userMessage {
+    width: calc(100% - 80px);
+    padding: 10px;
+    border: 1px solid #81c784; /* 초록색 테두리 */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* 전송 버튼 */
+#sendBtn {
+    width: 60px;
+    height: fit-content;
+    margin: 0 0 0 10px;
+    padding: 10px 0;
+    background-color: #66bb6a;
+    /*진한초록색버튼*/color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+#sendBtn:hover {
+    background-color: #81c784; /* 더 밝은 초록색 */
+}
+
+.user-message {
+    background-color: #e0ffe0;
+    color: #333;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: right;
+    margin: 5px;
+}
+
+.assistant-message {
+    background-color: #d9f2d9;
+    color: #333;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: left;
+    margin: 5px;
+}

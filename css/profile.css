@@ -1,0 +1,182 @@
+/* 프로필 입력 폼 스타일 */
+#profileForm {
+    display: flex;
+    position: relative;
+    max-width: 950px;
+    width: 100%;
+    height: 650px;
+    margin: 100px auto; /* 반응형 너비 */
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 왼쪽: 입력 필드 */
+.form-inputs {
+    flex: 1;
+    padding-right: 20px;
+    border-right: 2px solid #FF9E80;
+}
+
+/* 입력 필드 스타일 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 16px;
+    color: #CC6B49;
+    margin-bottom: 5px;
+}
+
+/* 숫자 입력 필드 스타일 */
+input[type="number"] {
+    padding: 8px;
+    width: 80%;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #FFBDAA;
+    outline: none;
+    transition: all 0.3s;
+}
+
+select {
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #FFBDAA;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: #FF9E80;
+    box-shadow: 0 0 5px rgba(255, 158, 128, 0.4);
+}
+
+.unit {
+    font-size: 14px;
+    color: #A66A4C;
+    margin-left: 10px;
+}
+
+/* 확인 버튼 */
+.btn-confirm {
+    width: 100%;
+    background-color: #FF9E80;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-confirm:hover {
+    background-color: #E87A59;
+}
+
+/* 결과 표시 */
+.results {
+    background-color: #FFF2EA;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.results p {
+    font-size: 16px;
+    color: #CC6B49;
+    margin: 5px 0;
+}
+
+.results span {
+    font-weight: bold;
+    color: #E87A59;
+}
+
+/* 오른쪽: 용어 풀이 */
+.form-info {
+    flex: 1;
+    padding-left: 20px;
+}
+
+#calorieDescription {
+    width: 100%;
+    line-height: 1.6;
+}
+
+/* BMI 척도 숨김 클래스 */
+.hidden {
+    display: none;
+}
+
+/* BMI 척도 버튼 스타일 */
+.btn-show-scale {
+    position: absolute;
+    bottom: 120px;
+    right: 650px;
+    background-color: #FF9E80;
+    color: white;
+    border: none;
+    padding: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-show-scale:hover {
+    background-color: #E87A59;
+}
+
+/* BMI 척도 테이블 스타일 */
+.bmi-scale {
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.bmi-scale table {
+    width: 400px; 
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #FFF2EA;
+    font-size: 12px;
+}
+
+.bmi-scale th, .bmi-scale td {
+    border: 1px solid #FFBDAA;
+    padding: 5px;
+}
+
+.bmi-scale th {
+    background-color: #FF9E80;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.bmi-scale td {
+    color: #CC6B49;
+    background-color: #FFF2EA;
+}
+
+.bmi-scale td:hover {
+    background-color: #FFBDAA;
+}
+
+.bmi-scale tr:nth-child(even) {
+    background-color: #FFF7F0;
+}

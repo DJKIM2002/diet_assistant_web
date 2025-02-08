@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어트 도우미</title>
+    <!-- 메인 페이지 css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- 로그인/회원가입 모달 css -->
+    <link rel="stylesheet" href="./css/auth.css">
+    <!-- 프로필 입력 폼 css -->
+    <link rel="stylesheet" href="./css/profile.css">
+    <!-- AI 채팅 폼 css -->
+    <link rel="stylesheet" href="./css/chat.css">
+    <!-- 다이어트 캘린더 css -->
+    <link rel="stylesheet" href="./css/calendar.css">
+    <!-- 운동 가이드 css -->
+    <link rel="stylesheet" href="./css/exercise.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/chat.js" defer></script>
+    <script src="./js/calendar.js" defer></script>
+    <script src="./js/exercise.js" defer></script>
+    <script src="./js/auth.js"></script>
+</head>
+<body>
+    <!-- 모달창이 나타나면 외부 기능 차단 -->
+    <div class="authModal-bg" style="display: none;"></div>
+    <!-- 중앙 제목 -->
+    <header>
+        <h1 class="title">다이어트 도우미</h1>
+        <div class="auth">
+            <ul>
+                <li><a href="#login" id="loginLink">로그인</a></li>
+                <li><a href="#signup" id="signupLink">회원가입</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 로그인/회원가입 모달 창 -->
+<div id="authModal" style="display: none;">
+    <div class="authModal-container">
+        <div class="authModal-header">
+            <div class="tab-container">
+                <button class="tab-btn active" id="login-tab">로그인</button>
+                <button class="tab-btn" id="signup-tab">회원가입</button>
+            </div>
+            <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+        
+        <!-- 로그인 폼 -->
+        <div class="authModal-body" id="login-form">
+            <form>
+                <div class="input-group">
+                    <label for="login-email">이메일</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-pwd">비밀번호</label>
+                    <input type="password" id="login-pwd" name="pwd" required>
+                </div>
+                <button type="submit" class="submit-btn">로그인</button>
+            </form>
+        </div>
+        
+        <!-- 회원가입 폼 -->
+        <div class="authModal-body" id="signup-form" style="display:none;">
+            <form>
+                <!-- 이메일 입력 -->
+                <div class="input-group">
+                    <label for="signup-email">이메일</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <!-- 비밀번호 입력 -->
+                <div class="input-group">
+                    <label for="signup-pwd">비밀번호</label>
+                    <input type="password" id="signup-pwd" name="pwd" required>
+                </div>
+                <!-- 비밀번호 확인 -->
+                <div class="input-group">
+                    <label for="confirm-pwd">비밀번호 확인</label>
+                    <input type="password" id="confirm-pwd" name="confirm_pwd" required>
+                </div>
+                <!-- 생년월일 입력 -->
+                <div class="input-group">
+                    <label for="signup-birthdate">생년월일</label>
+                    <input type="date" id="signup-birthdate" name="birthdate" required>
+                </div>
+                <!-- 성별 선택 -->
+                <div class="input-group">
+                    <label>성별</label>
+                    <div class="align-horizontal">
+                        <button type="button" class="gender-btn" data-gender="남">남</button>
+                        <button type="button" class="gender-btn" data-gender="여">여</button>
+                    </div>
+                    <input type="hidden" id="signup-gender" name="gender" required>
+                </div>
+                <!-- 회원가입 버튼 -->
+                <button type="submit" class="submit-btn">회원가입</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <div class="grid-container">
+        <!-- 프로필 입력 폼 -->
+        <div class="grid-item profile-form" onclick="expandForm('.profile-form')">
+            <!-- 확대 전 프로필 이미지 표시 -->
+            <h3 class="section-title">프로필 입력</h3>
+            <img src="./images/프로필 입력.png" class="placeholder-image" alt="프로필 이미지">
+
+            <div class="form-content">
+                <form id="profileForm" class="form-section">
+                    <!-- 왼쪽: 입력 필드 -->
+                    <div class="form-inputs">
+                        <div class="form-group">
+                            <label for="weight">체중 :</label>
+                            <div class="align-horizontal">
+                                <input type="number" step="0.1" id="weight" name="weight" min="10.0" max="300.0" required>
+                                <span class="unit">kg</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">키 :</label>
+                            <div class="align-horizontal">
+                                <input type="number" step="0.1" id="height" name="height" min="45.0" max="250.0" required>
+                                <span class="unit">cm</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="activityLevel">운동 수준 :</label>
+                            <select id="activityLevel" name="activityLevel" required>
+                                <option value="1">거의 활동하지 않음</option>
+                                <option value="2">가벼운 운동</option> 
+                                <option value="3">보통 운동</option>
+                                <option value="4">적극적 운동</option>
+                                <option value="5">매일 운동</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-confirm" onclick="calculateBMIAndCalories()">확인</button>
+                        <div class="results">
+                            <p><strong>BMI :</strong> <span id="bmiResult">-</span> (<span id="bmiCategory">-</span>)</p>
+                            <p><strong>기초 대사량 (BMR) :</strong> <span id="bmrResult">-</span> kcal</p>
+                            <p><strong>일일 칼로리 :</strong> <span id="calorieResult">-</span> kcal</p>
+                        </div>
+
+                <!-- 비만 척도 버튼 -->
+                <button type="button" class="btn-show-scale" onclick="toggleBMIScale()">비만 척도 보기</button>
+
+                <!-- BMI 척도 테이블 -->
+                <div class="bmi-scale hidden">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BMI 범위</th>
+                                <th>비만 척도</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&lt; 18.5</td>
+                                <td>저체중</td>
+                            </tr>
+                            <tr>
+                                <td>18.5 - 22.9</td>
+                                <td>정상 체중</td>
+                            </tr>
+                            <tr>
+                                <td>23.0 - 24.9</td>
+                                <td>과체중</td>
+                            </tr>
+                            <tr>
+                                <td>25.0 - 29.9</td>
+                                <td>비만</td>
+                            </tr>
+                            <tr>
+                                <td>&ge; 30.0</td>
+                                <td>고도 비만</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+
+                    <!-- 오른쪽: 용어 풀이 및 비만 설명 -->
+                    <div class="form-info">
+                        <h2>용어 풀이</h2>
+                        <hr>
+                        <div id="bmiInfo">
+                            <h3>- 체질량 지수(BMI)</h3>
+                            <p>BMI는 체중과 키를 이용하여 체지방 수준을 평가하는 지표입니다.</p>
+                        </div>
+                        <div id="bmrInfo">
+                            <h3>- 기초 대사량(BMR)</h3>
+                            <p>BMR은 하루에 필요한 기본 에너지 소모량을 나타냅니다.</p>
+                        </div>
+                        <div id="calorieInfo">
+                            <h3>- 칼로리</h3>
+                            <p id="calorieDescription">칼로리는 음식이 제공하는 에너지의 단위로, 우리 몸이 일상 활동과 신진대사를 위해 필요로 하는 연료입니다.
+                                많은 사람들이 칼로리를 '살이 찌게 하는 요소'로 오해하지만, 칼로리는 생명 유지를 위한 필수 에너지입니다. 다만, 섭취와 소모의 균형이 중요합니다.
+                                일반적으로 성인 남성은 하루 2,500 kcal, 성인 여성은 하루 2,000 kcal의 에너지를 필요로 합니다. 그러나 개인의 신체 조건, 활동 수준에 따라 권장 섭취량은 달라질 수 있습니다.
+                            <h4>이 권장 섭취량은 모든 사람에게 동일하게 적용되지 않으며, 신체 활동이 많거나 성장기인 경우 더 많은 칼로리가 필요할 수 있습니다. 섭취량은 자신의 생활 습관과 체형을 고려해 균형 있게 맞추는 것이 중요합니다.</h4></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- 다이어트 캘린더 -->
+        <div class="grid-item diet-calendar" onclick="expandForm('.diet-calendar')">
+            <h3 class="section-title">다이어트 캘린더</h3>
+            <img src="./images/다이어트 캘린더.png" class="placeholder-image" alt="프로필 이미지">
+            <div class="form-content">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prevMonthBtn">&#60;</button>
+                        <span id="monthYear"></span>
+                        <button id="todayBtn">오늘</button>
+                        <button id="nextMonthBtn">&#62;</button>
+                    </div>
+                    <table id="calendarTable">
+                        <thead>
+                            <tr>
+                                <th>일</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th>토</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 캘린더 날짜를 동적으로 삽입 -->
+                        </tbody>
+                    </table>
+                </div>
+        
+                <!-- 모달 창 -->
+                <div id="dateModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeDateModal">&times;</span>
+                        <h3 id="selectedDate"></h3>
+                        <div class="modal-section">
+                            <label for="memoInput">메모:</label>
+                            <textarea id="memoInput" rows="4" placeholder="메모를 입력하세요"></textarea>
+                        </div>
+                        <div class="modal-section">
+                            <label for="dietInput">하루 식단:</label>
+                            <textarea id="dietInput" rows="6" placeholder="예: 아침: 샐러드, 점심: 닭가슴살, 저녁: 고구마"></textarea>
+                        </div>
+                        <button id="saveButton">저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- 건강 도우미 채팅 폼 -->
+        <div class="grid-item health-chat" onclick="expandForm('.health-chat')">
+            <img src="./images/AI 채팅.png" class="placeholder-image" alt="프로필 이미지">
+            <h3 class="section-title">도우미 AI 채팅</h3>
+            <!-- 채팅 폼 -->
+            <div class="form-content">
+             <div id="chatContainer">
+                <div id="chatMessages"></div>
+                <div class="align-horizontal">
+                    <input id="userMessage" type="text" placeholder="질문을 입력하세요."/>
+                <button id="sendBtn" onclick="sendMessage()">보내기</button>
+
+                </div>
+             </div>
+            </div>
+        </div>
+
+        <!-- 운동 가이드 -->
+        <div class="grid-item exercise-guide" onclick="expandForm('.exercise-guide')">
+            <img src="./images/운동 가이드.png" class="placeholder-image" alt="운동 가이드 이미지">
+            <h3 class="section-title">운동 가이드</h3>
+        
+            <div class="form-content">
+                <div class="exercise-wrapper">
+                    <div class="exercise-container">
+                        <!-- 상위 카테고리 탭 -->
+                        <ul class="category-tabs">
+                            <li class="tab-button active" data-category="일상">일상</li>
+                            <li class="tab-button" data-category="스트레칭">스트레칭</li>
+                            <li class="tab-button" data-category="헬스">헬스</li>
+                        </ul>
+                
+                        <!-- 하위 카테고리 탭 -->
+                        <div class="subcategory-tabs">
+                            <button class="sub-tab-button" data-subcategory="arms">팔</button>
+                            <button class="sub-tab-button" data-subcategory="abs">복부</button>
+                            <button class="sub-tab-button" data-subcategory="legs">다리</button>
+                        </div>
+                
+                        <!-- 운동 카드 -->
+                        <div class="exercise-card">
+                            <div class="exercise-content">
+                                <p>하위 카테고리를 선택해주세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- 오늘의 건강 TIP 섹션 -->
+    <footer>
+        <span class="tip-title">오늘의 건강 TIP!</span>
+        <span id="healthTip" class="health-tip"></span>
+    </footer>
+
+    <button class="back-button" onclick="collapseForm()">이전</button>
+</body>
+</html>

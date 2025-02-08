@@ -1,0 +1,119 @@
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF7E6; /* 배경색: 밝은 크림 색 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+header {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.title {
+    font-size: 2rem;
+    color: #FF8C00; /* 제목 색상: 오렌지 */
+}
+
+/* 그리드 컨테이너 설정 */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 두 열로 구성 */
+    grid-template-rows: 1fr 1fr; /* 두 행으로 구성 */
+    gap: 10px; /* 각 항목 간격 */
+    height: calc(100vh - 160px); /* 화면의 높이를 적절히 유지 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 그리드 항목 스타일 */
+.grid-item {
+    padding: 20px;
+    color: #333;
+    border-radius: 8px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    cursor: pointer;
+    position: relative; /* 위치를 절대적으로 설정하기 위해 상대적 위치 지정 */
+    overflow: hidden; /* 내용이 넘치지 않도록 설정 */
+}
+
+/* 그리드 항목의 배경색 */
+.profile-form { background-color: #FFDDC1; } /* 파스텔 오렌지 */
+.diet-calendar { background-color: #D6EAF8; } /* 파스텔 블루 */
+.health-chat { background-color: #D5F5E3; } /* 파스텔 그린 */
+.exercise-guide { background-color: #FADBD8; } /* 파스텔 핑크 */
+
+/* 이미지 크기 조정 */
+.placeholder-image {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 39%;
+    top: 30%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* 폼 확대 시 '이전' 버튼 스타일 */
+.back-button {
+    display: none;
+    position: fixed; /* 화면에 고정 */
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: tomato; /* 버튼 배경색 */
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1001; /* 확대된 폼 위에 표시되도록 설정 */
+}
+
+/* 푸터 스타일 */
+footer {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #FFD700; /* 푸터 배경색 */
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.tip-title {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.health-tip {
+    font-style: italic;
+    color: #444;
+}
+
+/* 메인 화면에서 모든 폼의 내용물 숨기기 */
+.form-content {
+    display: none;
+    position: relative;
+}
+
+/* 각 섹션 별 제목 (확대 전후로 모두 보이는 스타일) */
+.section-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    color: #333;
+    z-index: 10;
+}
+
+.align-horizontal {
+    display: flex;
+}

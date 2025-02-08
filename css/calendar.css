@@ -1,0 +1,218 @@
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 캘린더 컨테이너 */
+.diet-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수평 중앙 정렬 */
+    height: auto; /* 부모의 높이에 맞게 설정 */
+    max-height: 500px; /* 캘린더의 최대 세로 길이 */
+    padding: 30px 20px;
+    width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+/* 캘린더 헤더 (이전/다음 버튼) */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#prevMonthBtn, #nextMonthBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 22px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%; /* 원형 버튼 */
+    transition: background-color 0.3s ease;
+}
+
+#prevMonthBtn:hover, #nextMonthBtn:hover {
+    background-color: #0056b3;
+}
+
+/* 월/년도 표시 */
+#monthYear {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 애니메이션을 트리거하기 위한 상태 (월 변경 시) */
+.month-changed #monthYear {
+    animation: blink 1.5s ease-in-out;
+}
+
+/* 캘린더 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    width: 14.28%;
+    height: 60px; /* 셀 높이 증가 */
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px; /* 글자 크기 증가 */
+    border: none;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase; /* 월 이름 대문자 */
+    padding: 10px;
+}
+
+td {
+    background-color: #e6f2ff;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+td:hover {
+    background-color: #b3d7ff;
+    cursor: pointer;
+}
+
+td.today {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+}
+
+/* 오늘 날짜 강조 */
+td.today:hover {
+    background-color: #0056b3;
+}
+
+/* 선택된 날짜 강조 */
+.selected {
+    background-color: #81bcfc; /* 선택된 날짜 배경색 */
+    color: white;
+}
+
+/* 오늘 버튼 */
+#todayBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 50px; /* 둥근 버튼 */
+    transition: all 0.3s ease; /* 부드러운 변화 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 입체적인 그림자 */
+    font-weight: bold; /* 굵은 글씨 */
+}
+
+#todayBtn:hover {
+    background-color: #0056b3; /* 호버 시 색상 변화 */
+    transform: scale(1.05); /* 호버 시 버튼이 약간 커지도록 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* 그림자 크기 증가 */
+}
+
+#todayBtn:active {
+    background-color: #004085; /* 클릭 시 어두운 색상 */
+    transform: scale(1); /* 클릭 시 크기 복원 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 원래 그림자 크기 */
+}
+
+
+/* 모달 창 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    padding: 20px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-section label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+#saveButton {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#saveButton:hover {
+    background-color: #0056b3;
+}
